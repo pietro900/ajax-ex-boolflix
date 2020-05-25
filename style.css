@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: darkgray;
+}
+
+header{
+    background-color: lightgray;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    padding: 40px 30px;
+}
+
+.header-sinistra{
+    float: left;
+}
+
+
+.header-destra{
+    float: right;
+}
