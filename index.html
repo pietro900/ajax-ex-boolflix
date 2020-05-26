@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Boolfix</title>
+        <script src="https://kit.fontawesome.com/d1d6e446fd.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -16,9 +18,21 @@
                 <button id='pulsante-ricerca'> Cerca </button>
             </div>
         </header>
-        <main>
+        <main class="container">
+            <h1 class="titolo-ricerca">Risultati ricerca film: <span class="nome_ricerca"></span></h1>
+            <div id="risultati_ricerca">
 
+            </div>
         </main>
+
+        <script id="card-template" type="text/x-handlebars-template">
+            <ul class="card">
+                <li>{{ titolo }}</li>
+                <li>{{ titolo_originale }}</li>
+                <li>{{{ lingua }}}</li>
+                <li>{{{ voto }}}</li>
+            </ul>
+        </script>
         <script src="main.js" charset="utf-8"></script>
     </body>
 </html>

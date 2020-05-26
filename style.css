@@ -20,7 +20,35 @@ header{
     float: left;
 }
 
-
 .header-destra{
     float: right;
+}
+
+.container{
+    padding: 150px 20px 0;
+}
+
+.titolo-ricerca{
+    color: white;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.titolo-ricerca.visible {
+    display: block;
+}
+
+#risultati_ricerca {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+    list-style-type: none;
 }
