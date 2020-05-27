@@ -11,7 +11,14 @@
     <body>
         <header>
             <div class="header-sinistra">
-                BOOLFLIX
+                <h1>BOOLFLIX</h1>
+                <ul>
+                  <li>Home</li>
+                  <li>Serie Tv</li>
+                  <li>Film</li>
+                  <li>Nuovi Arrivi</li>
+                  <li>La Mia Lista</li>
+                </ul>
             </div>
             <div class="header-destra">
                 <input type="text" id="ricerca">
@@ -19,7 +26,7 @@
             </div>
         </header>
         <main class="container">
-            <h1 class="titolo-ricerca">Risultati ricerca film: <span class="nome_ricerca"></span></h1>
+            <h1 class="titolo-ricerca">Risultati ricerca per: <span class="nome_ricerca"></span></h1>
             <div id="risultati_ricerca">
 
             </div>
@@ -29,7 +36,7 @@
             <div class="flip-box">
                 <div class="flip-box-inner">
                     <div class="flip-box-front">
-                        <img src="https://image.tmdb.org/t/p/w185{{ immagine }}" class="img" alt="">
+                        <img class="img" src="{{ immagine }}" alt="{{ titolo }}">
                     </div>
                     <ul class="card flip-box-back">
                         <li><strong>Titolo:</strong> {{ titolo }}</li>
@@ -37,6 +44,7 @@
                         <li><strong>Lingua:</strong> {{{ lingua }}}</li>
                         <li><strong>Voto:</strong> {{{ voto }}}</li>
                         <li> <strong> Tipo:</strong> {{ Tipo }}</li>
+                        <li>{{overview}}</li>
                     </ul>
                 </div>
             </div>

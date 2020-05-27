@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    // variabili per le chiamate ajax
+    var api_key = '7a5c4ff6044370a409724f73ef7b1cab';
+    var api_url_base = 'https://api.themoviedb.org/3/';
+    var api_img_url_base = 'https://image.tmdb.org/t/p/';
+    var dimensione_img = 'w185';
 
     // preparo le variabili per handlebars
     var template_html = $('#card-template').html();
@@ -25,10 +30,10 @@ $(document).ready(function() {
 
             //faccio una chiamata ajax
             $.ajax({
-                'url':'https://api.themoviedb.org/3/search/movie',
+                'url': api_url_base + 'search/movie',
                 'method' : 'GET',
                 'data': {
-                    'api_key' : '7a5c4ff6044370a409724f73ef7b1cab',
+                    'api_key' : api_key,
                     'query' : ricerca_utente,
                     'language' : 'it',
                 },
@@ -50,10 +55,10 @@ $(document).ready(function() {
             });
             //chiamata ajax per le serie tv;
             $.ajax({
-                'url': 'https://api.themoviedb.org/3/search/tv',
+                'url': api_url_base + 'search/tv',
                 'method': 'GET',
                 'data': {
-                    'api_key': '7a5c4ff6044370a409724f73ef7b1cab',
+                    'api_key': api_key,
                     'query': ricerca_utente,
                     'language': 'it'
                 },
@@ -97,6 +102,14 @@ $(document).ready(function() {
 
     // funzione per appendere una card ai risultati
     function disegna_card(oggetto, film) {
+
+        // verifico se c'è un'immagine di copertina
+        if(oggetto.poster_path !== null) {
+            var img = api_img_url_base + dimensione_img + oggetto.poster_path;
+        } else {
+            var img = 'poster-not-available.jpg';
+        }
+
         // preparo i dati per il template
         var placeholder = {
             'titolo': oggetto.title,
@@ -104,8 +117,10 @@ $(document).ready(function() {
             'lingua': bandierine(oggetto.original_language),
             'voto': stelle(oggetto.vote_average),
             'Tipo' : film,
-            'immagine': oggetto.poster_path,
+            'overview' : oggetto.overview,
+            'immagine': img,
         };
+
         var html_card = template(placeholder);
         // appendo la card con i dati del risultato corrente
         $('#risultati_ricerca').append(html_card);
@@ -113,6 +128,14 @@ $(document).ready(function() {
 
     // funzione per appendere una card ai risultati
     function disegna_card_serietv(oggetto, serietv) {
+
+        // verifico se c'è un'immagine di copertina
+        if(oggetto.poster_path !== null) {
+            var img = api_img_url_base + dimensione_img + oggetto.poster_path;
+        } else {
+            var img = 'poster-not-available.jpg';
+        };
+
         // preparo i dati per il template
         var placeholder = {
             'titolo': oggetto.name,
@@ -120,8 +143,10 @@ $(document).ready(function() {
             'lingua': bandierine(oggetto.original_language),
             'voto': stelle(oggetto.vote_average),
             'Tipo' : serietv,
-            'immagine': oggetto.poster_path,
+            'overview' : oggetto.overview,
+            'immagine': img,
         };
+
         var html_card = template(placeholder);
         // appendo la card con i dati del risultato corrente
         $('#risultati_ricerca').append(html_card);
@@ -145,7 +170,7 @@ $(document).ready(function() {
 
     //funzione per inserire le bandiere
     function bandierine(lingua) {
-        var array_lingue = ["en", "es", "fr", "it"];
+        var array_lingue = ["en", "de", "es", "fr", "it", "ja"];
 
         if (array_lingue.includes(lingua)) {
             var bandierina = '<img src="'+ lingua + '.png">';
