@@ -26,12 +26,20 @@
         </main>
 
         <script id="card-template" type="text/x-handlebars-template">
-            <ul class="card">
-                <li>{{ titolo }}</li>
-                <li>{{ titolo_originale }}</li>
-                <li>{{{ lingua }}}</li>
-                <li>{{{ voto }}}</li>
-            </ul>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="https://image.tmdb.org/t/p/w185{{ immagine }}" class="img" alt="">
+                    </div>
+                    <ul class="card flip-box-back">
+                        <li><strong>Titolo:</strong> {{ titolo }}</li>
+                        <li><strong>Titolo otiginale:</strong> {{ titolo_originale }}</li>
+                        <li><strong>Lingua:</strong> {{{ lingua }}}</li>
+                        <li><strong>Voto:</strong> {{{ voto }}}</li>
+                        <li> <strong> Tipo:</strong> {{ Tipo }}</li>
+                    </ul>
+                </div>
+            </div>
         </script>
         <script src="main.js" charset="utf-8"></script>
     </body>
